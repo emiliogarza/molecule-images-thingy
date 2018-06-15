@@ -1,0 +1,65 @@
+/**
+ * Inspired from http://dabblet.com/gist/3864650
+ * -[x] 1. BEM it to flatten specificity
+ * -[x] #2. Remove outer circle
+ * -[x] #3. Make center a Circle with content
+ * -[x] #4. Do more of a fill the left half circle method.
+  Made a dynamic control of the position of the images :D :D :D
+ * -[] #5. Create a Mobile UI
+ */
+
+/*define CSS Variables to be modified by JS*/
+:root {
+    --color: #FF0000;
+    --translateValue: 14em;
+    --rotateValue: 0;
+    --negativeRotateValue: 0;
+}
+
+.molecular {
+    display: flex;
+    position: relative;
+    width: 20em;
+    height: 20em;
+    padding: 4em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+    border-radius: 50%;
+    margin: 1.75em auto 0;
+    text-align: center;
+    border: dashed 1px;
+    border-radius: 50%;
+}
+
+.molecular__innercircle {
+    flex:1;
+    background: var(--color);
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4em;
+}
+
+.molecular__molecule {
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4em;
+    height: 4em;
+    margin: -2em; /* 2em = 4em/2 */ /* half the width */
+    animation: expandFromNucleus 2s;
+    transform: rotate(var(--rotateValue)) translate(var(--translateValue)) rotate(var(--negativeRotateValue));
+}
+
+.molecular__molecule:hover {
+  border: 2px solid var(--color);
+}
+
+@keyframes expandFromNucleus {
+  0% {
+    transform: scale(1);
+  }
+  100% {}
+}
