@@ -8,13 +8,14 @@
  * -[x] #5. Create a Mobile UI
  */
 :root {
+    --color: #000;
+    --fontColor: #fff;
     --device:mobile;
 }
 
 @media screen and (min-width: 450px) {
     /*define CSS Variables to be modified by HTML Dynamically*/
     :root {
-        --color: #FF0000;
         --translateValue: 14em;
         --rotateValue: 0;
         --negativeRotateValue: 0;
@@ -37,6 +38,7 @@
     .molecular__innercircle {
         flex:1;
         background: var(--color);
+        color: var(--fontColor);
         border-radius: 50%;
         display:flex;
         align-items: center;
@@ -61,6 +63,10 @@
     .molecular__molecule:hover,
     .molecular__molecule--selected {
       border: 2px solid var(--color);
+    }
+
+    .molecular__image {
+        width: 4em;
     }
 
     @keyframes expandFromNucleus {

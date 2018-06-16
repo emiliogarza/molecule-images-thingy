@@ -1,41 +1,35 @@
 /* Var Defaults */
-var elems = document.querySelectorAll(".molecular__molecule");
-var currentSlide = 0;
-/* Something is wrong with this desktopJSLoaded Flad.. will have to investigate further tomorrow. */
-var desktopJSLoaded = false;
-var slideInterval = function() {
-    nextMoleculeInterval = setInterval(nextMolecule, 5000);
-}
+var elems = document.querySelectorAll(".molecular__molecule"),
+    currentSlide = 0,
+    desktopJSLoaded = false,
+    slideInterval = function() {
+        nextMoleculeInterval = setInterval(nextMolecule, 5000);
+    };
 
+/* Inits */
 init();
-window.addEventListener('resize', debounced);
+window.addEventListener('resize', debounce(function() {
+    init();
+}, 250));
 
-/*Controls For Desktop*/
+/* Bind Stuff to the little Circles */
 function loadDesktopBindings() {
+    slideInterval();
+    desktopJSLoaded = true;
     elems.forEach(function(el,i) {
-        el.addEventListener("mouseover",function() {
+        el.addEventListener("mouseover", function(){
             appendContentToTheMiddleCircle(this.dataset.content);
             goToMolecule(i);
             clearInterval(nextMoleculeInterval);
         });
-        el.addEventListener("mouseout", function() {
-            slideInterval();
-        });
+        el.addEventListener("mouseout", slideInterval);
         el.addEventListener("click", function(e) {
-
+            e.preventDefault();
         });
     });
-    slideInterval();
-    desktopJSLoaded = true;
-}
-function unLoadDesktopBindings() {
-    elems.forEach(function(el,i) {
-        el.removeEventListener("mouseover");
-        el.removeEventListener("mouseout");
-        el.removeEventListener("click");
-    });
 }
 
+/* Fns for auto-rotation and hovers */
 function appendContentToTheMiddleCircle(content) {
     document.querySelectorAll(".molecular__innercircle")[0].innerHTML = content;
 }
@@ -56,23 +50,25 @@ function goToMolecule(m) {
 
 function init() {
     if (getComputedStyle(document.body).getPropertyValue("--device") == "desktop") {
-        console.log("Desktop")
+        /* If we haven't bound to little circles, do so and kick off rotation */
         if (desktopJSLoaded == false) {
-            console.log("DESKTOP, first time. Such a proud moment.");
             loadDesktopBindings();
+        }
+        /* If we have already loaded the stuff, just kick off the rotation */
+        else {
+            slideInterval();
         }
     }
     else {
-        console.log("You're mobile now son");
-        if (desktopJSLoaded) {
-            console.log("You used to be desktop, but you have now traded to the dark side...");
+        /* Stop the rotation on mobile */
+        if (typeof nextMoleculeInterval !== 'undefined') {
             clearInterval(nextMoleculeInterval);
-            unLoadDesktopBindings();
         }
     }
 }
 
-/* For measuring window resize stuff */
+/* Debounce function for Resize Event.
+From underscore.js: https://underscorejs.org/#debounce  */
 function debounce(func, wait, immediate) {
 	var timeout;
 	return function() {
@@ -87,7 +83,3 @@ function debounce(func, wait, immediate) {
 		if (callNow) func.apply(context, args);
 	};
 }
-
-var debounced = debounce(function() {
-    init();
-}, 250);
