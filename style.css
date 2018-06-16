@@ -53,7 +53,8 @@
     transform: rotate(var(--rotateValue)) translate(var(--translateValue)) rotate(var(--negativeRotateValue));
 }
 
-.molecular__molecule:hover {
+.molecular__molecule:hover,
+.molecular__molecule--selected {
   border: 2px solid var(--color);
 }
 
