@@ -38,14 +38,14 @@ function nextMolecule() {
     elems[currentSlide].className = 'molecular__molecule';
     currentSlide = (currentSlide + 1) % elems.length;
     elems[currentSlide].className = 'molecular__molecule molecular__molecule--selected';
-    appendContentToTheMiddleCircle(elems[currentSlide].dataset.content);
+    appendContentToTheMiddleCircle(document.querySelectorAll(".molecular__paragraph")[currentSlide].innerHTML);
 }
 
 function goToMolecule(m) {
     elems[currentSlide].className = 'molecular__molecule';
     currentSlide = (m + elems.length) % elems.length;
     elems[currentSlide].className = 'molecular__molecule molecular__molecule--selected';
-    appendContentToTheMiddleCircle(elems[currentSlide].dataset.content);
+    appendContentToTheMiddleCircle(document.querySelectorAll(".molecular__paragraph")[currentSlide].innerHTML);
 }
 
 function init() {

@@ -6,12 +6,37 @@
  * -[x] #4. Do more of a fill the left half circle method.
   Made a dynamic control of the position of the images :D :D :D
  * -[x] #5. Create a Mobile UI
- */
+**/
 :root {
     --color: #000;
     --fontColor: #fff;
     --device:mobile;
 }
+.molecular__innercircle {
+    display: none;
+}
+.molecular__molecule {
+    display: block;
+    text-decoration: none;
+}
+.molecular__image {
+    border-radius: 50%;
+    display: inline-block;
+    width: 4em;
+    height: 4em;
+    vertical-align: top;
+}
+.molecular__paragraph {
+    border-radius: .5em;
+    background-color: var(--color);
+    padding: 2%;
+    color: var(--fontColor);
+    max-width: 55%;
+    display: inline-block;
+    margin-left: 4%;
+}
+
+
 
 @media screen and (min-width: 450px) {
     /*define CSS Variables to be modified by HTML Dynamically*/
@@ -67,6 +92,11 @@
 
     .molecular__image {
         width: 4em;
+        max-width: 4em;
+    }
+
+    .molecular__paragraph {
+        display: none;
     }
 
     @keyframes expandFromNucleus {
