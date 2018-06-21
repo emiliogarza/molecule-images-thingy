@@ -49,7 +49,7 @@ function goToMolecule(m) {
 }
 
 function init() {
-    if (getComputedStyle(document.body).getPropertyValue("--device") == "desktop") {
+    if (getComputedStyle(document.body).getPropertyValue("--molecularDevice") == "desktop") {
         /* If we haven't bound to little circles, do so and kick off rotation */
         if (desktopJSLoaded == false) {
             loadDesktopBindings();

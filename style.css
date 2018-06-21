@@ -8,9 +8,9 @@
  * -[x] #5. Create a Mobile UI
 **/
 :root {
-    --color: #000;
-    --fontColor: #fff;
-    --device:mobile;
+    --molecularColor: #000;
+    --molecularFontColor: #fff;
+    --molecularDevice:mobile;
 }
 .molecular__innercircle {
     display: none;
@@ -28,9 +28,9 @@
 }
 .molecular__paragraph {
     border-radius: .5em;
-    background-color: var(--color);
+    background-color: var(--molecularColor);
     padding: 2%;
-    color: var(--fontColor);
+    color: var(--molecularFontColor);
     max-width: 55%;
     display: inline-block;
     margin-left: 4%;
@@ -41,10 +41,10 @@
 @media screen and (min-width: 450px) {
     /*define CSS Variables to be modified by HTML Dynamically*/
     :root {
-        --translateValue: 14em;
-        --rotateValue: 0;
-        --negativeRotateValue: 0;
-        --device:desktop;
+        --molecularTranslateValue: 14em;
+        --molecularRotateValue: 0;
+        --molecularNegativeRotateValue: 0;
+        --molecularDevice:desktop;
     }
 
     .molecular {
@@ -62,8 +62,8 @@
 
     .molecular__innercircle {
         flex:1;
-        background: var(--color);
-        color: var(--fontColor);
+        background: var(--molecularColor);
+        color: var(--molecularFontColor);
         border-radius: 50%;
         display:flex;
         align-items: center;
@@ -81,13 +81,13 @@
         width: 4em;
         height: 4em;
         margin: -2em; /* 2em = 4em/2 */ /* half the width */
-        animation: expandFromNucleus 2s;
-        transform: rotate(var(--rotateValue)) translate(var(--translateValue)) rotate(var(--negativeRotateValue));
+        animation: molecularExpandFromNucleus 2s;
+        transform: rotate(var(--molecularRotateValue)) translate(var(--molecularTranslateValue)) rotate(var(--molecularNegativeRotateValue));
     }
 
     .molecular__molecule:hover,
     .molecular__molecule--selected {
-      border: 2px solid var(--color);
+      border: 2px solid var(--molecularColor);
     }
 
     .molecular__image {
@@ -99,7 +99,7 @@
         display: none;
     }
 
-    @keyframes expandFromNucleus {
+    @keyframes molecularExpandFromNucleus {
       0% {
         transform: scale(1);
       }
